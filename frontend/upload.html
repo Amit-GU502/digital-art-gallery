@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Art – Digital Game Art Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 2rem;
+    }
+    form {
+      background: white;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    #status {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    button[type="button"] {
+      background: #ccc;
+      color: black;
+    }
+    button[type="button"]:hover {
+      background: #bbb;
+    }
+
+  </style>
+</head>
+<body>
+  <form id="upload-form" enctype="multipart/form-data">
+    <h2>Upload New Artwork</h2>
+    <input type="text" name="title" placeholder="Title" required />
+    <textarea name="description" placeholder="Description" required></textarea>
+    <input type="file" name="image" accept="image/*" required />
+    <button type="submit">Upload</button>
+    <p id="status"></p>
+    <button type="button" onclick="window.location.href='index.html'">Cancel</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('upload-form');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      if (!token) {
+        status.textContent = '❌ You must be logged in as admin.';
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('http://localhost:4000/api/images/upload', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          body: formData
+        });
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          status.textContent = '❌ Upload failed: ' + errorText;
+          return;
+        }
+
+        const data = await res.json();
+        status.textContent = `✅ Uploaded: ${data.title}`;
+        form.reset();
+      } catch (err) {
+        status.textContent = '❌ Upload error';
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

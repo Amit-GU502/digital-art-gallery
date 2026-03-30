@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Game Art Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Digital Game Art Gallery</h1>
+    <nav>
+      <a href="#gallery">Gallery</a>
+      <a href="#artists">Artists</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="login.html" id="login-link">Login</a>
+      <a href="register.html" id="register-link">Register</a>
+      <a href="upload.html" id="upload-link" style="display: none;">Upload</a>
+
+    </nav>
+
+    <button id="theme-toggle" class="theme-btn">Toggle Theme</button>
+    <p id="current-user" style="margin-top: 0.5rem; font-size: 0.9rem; color: #ccc;"></p>
+    <button id="logout-btn" style="display: none; margin-top: 0.5rem;">Logout</button>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-images">
+      <img src="/frontend/images/ArmoredCore6-1.jpg" alt="Slide 1" class="slide active">
+      <img src="/frontend/images/genshinimpact.jpg" alt="Slide 2" class="slide">
+      <img src="/frontend/images/armoredcore6-3.jpeg" alt="Slide 3" class="slide">
+    </div>
+    <button class="hero-nav hero-prev">&#10094;</button>
+    <button class="hero-nav hero-next">&#10095;</button>
+    <div class="hero-content">
+      <h2>Explore Immersive Digital Worlds</h2>
+      <a href="#gallery" class="cta-btn">Browse Gallery</a>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery-intro">
+    <h2>Gallery</h2>
+    <p>Discover stunning digital art inspired by your favorite games. Click on any image to view it in detail.</p>
+  </section>
+  
+    <main id="gallery" class="gallery-container"></main>
+    <div id="loader">...</div>
+    <hr>
+
+  <!-- LIGHTBOX WITH COMMENTS -->
+  <div id="lightbox" class="lightbox hidden">
+    <span class="close">&times;</span>
+    <div class="lightbox-wrapper">
+      <div id="lightbox-comments" class="comments-sidebar">
+        <h3>Comments</h3>
+        <form id="comment-form">
+          <textarea name="text" placeholder="Add a comment..." required></textarea>
+          <button type="submit">Post</button>
+          <button type="button" onclick="document.getElementById('lightbox').classList.add('hidden')">Cancel</button>
+        </form>
+        <div id="comments-list"></div>
+      </div>
+      <div class="lightbox-image-area">
+        <button class="nav-btn prev-btn">&#10094;</button>
+        <img id="lightbox-img" src="" alt="">
+        <p id="lightbox-title"></p>
+        <div id="lightbox-description"></div>
+        <button class="nav-btn next-btn">&#10095;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTISTS -->
+  <section id="artists">
+    <h2>Featured Artists</h2>
+    <div class="artist-cards">
+      <div class="artist-card">
+        <img src="/frontend/images/Artists/void-re-era genshin impact.jpg" alt="void/Re:era">
+        <h3>void/Re:era</h3>
+        <p>Visual Effect Artist</p>
+        <div class="socials">
+          <a href="https://x.com/void_ling?lang=en">🐦</a>
+          <a href="#">📸</a>
+          <a href="#">🔗</a>
+        </div>
+      </div>
+      <div class="artist-card">
+        <img src="/frontend/images/Artists/jen-lee hades 2.jpg" alt="Jen Lee">
+        <h3>Jen Lee</h3>
+        <p>Art Director of Hades II </p>
+        <div class="socials">
+          <a href="https://x.com/0jenzee0">🐦</a>
+          <a href="#">📸</a>
+          <a href="#">🔗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Welcome to our digital art sanctuary. We showcase game-inspired visuals crafted by passionate artists from all around the world.
+      Our mission is to celebrate the creativity and innovation in the gaming industry, providing a platform for artists to share their work and connect with fans.
+      Join us in exploring the vibrant world of digital game art, where pixels come to life and imagination knows no bounds.
+      Whether you're a gamer, an artist, or simply an admirer of digital art, we invite you to immerse yourself in our gallery and discover the magic of game-inspired visuals.
+    </p>
+    
+    <p>This is a student project and all the art and images doesn't belong to me.<br>
+      By Amit Kumar Singh<br>
+      22SCSE1011502<br>
+      Section - 5<br>
+      B.Tech CSE 3rd Year Sem 6
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Info</h2>
+    <p>Email: <a href="#">contact@example.com</a></p>
+    <p>Phone: <a href="#">+123 456 7890</a></p>
+    <p>Address: <span>123 Game Lane, Pixelville, VG 420</span></p>
+  </section>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
